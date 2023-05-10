@@ -8,6 +8,16 @@
     <language>en-gb</language>
     <lastBuildDate>Thu, 19 Oct 2017 15:26:15 +0000</lastBuildDate><atom:link href="https://choyoungseo20.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>First Blog text</title>
+      <link>https://choyoungseo20.github.io/blog/secondblog/</link>
+      <pubDate>Wed, 10 May 2023 16:27:53 +0900</pubDate>
+      
+      <guid>https://choyoungseo20.github.io/blog/secondblog/</guid>
+      <description>블로그 테스트 이 블로그는 저의 첫 번째 블로그입니다. 오픈소스 수업을 들으며 배운 내용을 토대로 여러가지 테스트를 할 예정입니다.
+이 블로그를 통해 다양한 작업을 해볼 예정이기에 내용이 자주 바뀔 수 있는 점 참고바랍니다.</description>
+    </item>
+    
+    <item>
       <title>Hugo Portfolio Website</title>
       <link>https://choyoungseo20.github.io/portfolio/hugo-portfolio-website/</link>
       <pubDate>Fri, 19 Jun 2020 23:00:00 +0000</pubDate>
