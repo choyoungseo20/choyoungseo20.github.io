@@ -3,8 +3,12 @@
 - type: github
   icon: "fab fa-github"
 
-- type: twitter
-  icon: "fa-brands fa-x-twitter"
+# - type: twitter
+#   icon: "fa-brands fa-x-twitter"
+
+- type: linkedin
+  icon: "fab fa-linkedin"   # icons powered by <https://fontawesome.com/>
+  url: "https://www.linkedin.com/in/%EC%98%81%EC%84%9C-%EC%A1%B0-7b204b402"
 
 - type: email
   icon: "fas fa-envelope"
