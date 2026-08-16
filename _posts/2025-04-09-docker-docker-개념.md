@@ -13,15 +13,15 @@ tags: []
 
 - 머신 가상화 (하이퍼바이저)
 
-![](/assets/img/posts/2025-04-09-docker-docker-개념-01.png)
+![](/assets/img/posts/2025-04-09-docker-docker-개념-01.png)
 
 - OS 수준 가상화 (리눅스 컨테이너)
 
-![](/assets/img/posts/2025-04-09-docker-docker-개념-02.png)
+![](/assets/img/posts/2025-04-09-docker-docker-개념-02.png)
 
 - 개발 환경 가상화 (파이썬 가상 환경)
 
-![](/assets/img/posts/2025-04-09-docker-docker-개념-03.jpg)
+![](/assets/img/posts/2025-04-09-docker-docker-개념-03.jpg)
 
 #### **Docker를 사용하는 이유**
 
@@ -33,7 +33,7 @@ tags: []
 
 독립적인 실행 환경 (미니 컴퓨터)
 
-![](/assets/img/posts/2025-04-09-docker-docker-개념-04.png)
+![](/assets/img/posts/2025-04-09-docker-docker-개념-04.png)
 
 #### **Container의 독립성**
 
