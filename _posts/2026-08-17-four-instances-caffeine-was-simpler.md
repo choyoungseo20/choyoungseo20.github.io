@@ -6,7 +6,7 @@ categories: [Backend, Architecture]
 tags: [cache, caffeine, redis, decision-record, multi-instance]
 ---
 
-금융상품 설명 콘텐츠 조회 API는 단일 인스턴스에서 인프로세스 캐시(Caffeine)로 `(ticker, trade_date)` 결과를 짧은 TTL 동안 재사용한다. 이 구성을 증권사 관리 환경의 로드밸런서 뒤 4대로 확장하는 것이 과제였다.
+ETF 가격 변동 설명 조회 API는 단일 인스턴스에서 인프로세스 캐시(Caffeine)로 `(ticker, trade_date)` 결과를 짧은 TTL 동안 재사용한다. 이 구성을 증권사 관리 환경의 로드밸런서 뒤 4대로 확장하는 것이 과제였다.
 
 기본 반사는 명확했다. "인프로세스 캐시는 공유되지 않으니 Redis를 넣는다." 이 반사를 실행하기 전에 실측으로 검증하기로 했고, 결과는 반사와 반대였다.
 
