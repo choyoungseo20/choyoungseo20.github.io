@@ -1,0 +1,33 @@
+---
+---
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+/* 사이드바 제목 영역 공간 조절 */
+#sidebar {
+  .site-title {
+    font-size: 1.35rem; /* 기본 1.75rem에서 줄여 한 줄에 들어가게 */
+    white-space: nowrap;
+  }
+
+  .site-subtitle {
+    height: auto; /* tagline이 비어 있어도 3rem 높이를 차지하던 것 제거 */
+    margin-top: 0;
+  }
+
+  .profile-wrapper {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+}
