@@ -1,7 +1,7 @@
 ---
 title: "[Docker] AWS ECR"
 date: 2025-04-10 01:21:08 +0900
-categories: [Back-End, DevOps]
+categories: [Backend, Docker]
 tags: []
 ---
 

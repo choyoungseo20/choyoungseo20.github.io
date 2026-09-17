@@ -1,7 +1,7 @@
 ---
-title: "[그래프] Edmonds' Blossom Algorithm"
+title: "[Graph] Edmonds' Blossom Algorithm"
 date: 2025-05-06 20:52:50 +0900
-categories: [Algorithm, 그래프]
+categories: [Algorithm, Graph]
 tags: []
 ---
 

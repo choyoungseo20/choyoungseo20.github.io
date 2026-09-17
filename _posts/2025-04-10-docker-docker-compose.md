@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Docker Compose"
 date: 2025-04-10 00:54:40 +0900
-categories: [Back-End, DevOps]
+categories: [Backend, Docker]
 tags: []
 ---
 

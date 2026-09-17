@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Docker CLI"
 date: 2025-04-09 22:19:57 +0900
-categories: [Back-End, DevOps]
+categories: [Backend, Docker]
 tags: []
 ---
 

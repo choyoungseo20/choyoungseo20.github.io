@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Docker Volume"
 date: 2025-04-09 23:45:03 +0900
-categories: [Back-End, DevOps]
+categories: [Backend, Docker]
 tags: []
 ---
 

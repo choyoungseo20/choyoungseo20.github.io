@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Docker 개념"
 date: 2025-04-09 21:41:33 +0900
-categories: [Back-End, DevOps]
+categories: [Backend, Docker]
 tags: []
 ---
 
