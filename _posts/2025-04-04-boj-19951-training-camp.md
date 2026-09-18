@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 19951번: 태상이의 훈련소 생활"
 date: 2025-04-04 00:06:03 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, prefix-sum]
 ---
 
 ## **문제&링크**

@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 1167번: 트리의 지름"
 date: 2025-08-10 22:56:03 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, tree, DFS]
 ---
 
 ## **문제 & 링크**

@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 8972번: 미친 아두이노"
 date: 2025-04-04 00:05:55 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, simulation]
 ---
 
 ## **문제&링크**

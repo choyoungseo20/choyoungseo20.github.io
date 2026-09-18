@@ -3,7 +3,7 @@ title: "4가지 캐시 구성 부하 실험"
 description: 네 가지 캐시 구성을 75회 부하 실험으로 비교했다. 응답 지연보다 DB 로딩과 콜드 스타트에서 차이가 났고, 현재 조건에서 Redis 도입을 기각했다.
 date: 2026-08-17 05:00:00 +0900
 categories: [Backend, Architecture]
-tags: [cache, Caffeine, Redis, load-testing, multi-instance]
+tags: [Spring Boot, Spring Data Redis, Lettuce, Caffeine, Redis, cache, load-testing, k6, Prometheus, PostgreSQL, Docker Compose]
 ---
 
 ### **실험 환경**
@@ -15,6 +15,7 @@ tags: [cache, Caffeine, Redis, load-testing, multi-instance]
 - 구성 : nginx 라운드로빈 + 조회 API 4대(각 1 CPU/768MB) + 전용 PostgreSQL(2 CPU) + Redis 7(maxmemory 1GB, persistence off), Prometheus 5초 스크레이프
 - 캐시 : L1 Caffeine TTL 2초, L2 Redis TTL 3초
 - 비교 대상 : 캐시 없음, 인프로세스만, 공유 캐시만, 2계층(L1 + L2)
+- 부하 발생기 : k6
 
 > 측정 환경은 로컬 Docker Compose(Apple M5 Pro)이며 부하 발생기와 서버가 같은 머신에서 돌았다. 따라서 아래 수치는 운영 환경의 절대 용량이 아니라 전략 간 비교 기준이다.
 {: .prompt-info }

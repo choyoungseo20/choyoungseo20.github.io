@@ -2,7 +2,7 @@
 title: "Docker CLI"
 date: 2025-04-09 22:19:57 +0900
 categories: [Backend, Docker]
-tags: []
+tags: [Docker, Docker CLI, container]
 ---
 
 #### **Docker에서 Docker Hub의 이미지를 컨테이너에 띄우기 위한 세 단계**

@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 20529번: 가장 가까운 세 사람의 심리적 거리"
 date: 2025-04-04 00:06:18 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, brute-force, backtracking]
 ---
 
 ## **문제 & 링크**

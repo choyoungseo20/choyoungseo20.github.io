@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 18223번: 민준이와 마산 그리고 건우"
 date: 2025-08-24 23:58:21 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, Dijkstra, graph]
 ---
 
 ## **문제 & 링크**

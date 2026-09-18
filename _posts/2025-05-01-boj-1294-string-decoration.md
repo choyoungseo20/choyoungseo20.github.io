@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 1294번: 문자열 장식"
 date: 2025-05-01 23:15:55 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, string, priority-queue]
 ---
 
 ## **문제 & 링크**

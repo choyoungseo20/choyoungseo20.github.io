@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 1744번: 수 묶기"
 date: 2025-07-27 23:41:37 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, greedy, priority-queue]
 ---
 
 ## **문제 & 링크**

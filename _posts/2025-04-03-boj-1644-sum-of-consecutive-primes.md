@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 1644번: 소수의 연속합"
 date: 2025-04-03 00:08:15 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, prime, sieve, two-pointer]
 ---
 
 ## **문제 & 링크**

@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 3673번: 나눌 수 있는 부분 수열"
 date: 2025-07-20 01:10:20 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, prefix-sum, combinatorics]
 ---
 
 ## **문제 & 링크**

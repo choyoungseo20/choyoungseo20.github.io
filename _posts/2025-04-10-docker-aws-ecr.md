@@ -2,7 +2,7 @@
 title: "AWS ECR"
 date: 2025-04-10 01:21:08 +0900
 categories: [Backend, Docker]
-tags: []
+tags: [Docker, AWS, AWS ECR]
 ---
 
 ### **ECR (Elastic Container Registry)**

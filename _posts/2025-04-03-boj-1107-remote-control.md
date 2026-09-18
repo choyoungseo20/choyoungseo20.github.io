@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 1107번: 리모컨"
 date: 2025-04-03 00:06:57 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, brute-force]
 ---
 
 ## **문제 & 링크**

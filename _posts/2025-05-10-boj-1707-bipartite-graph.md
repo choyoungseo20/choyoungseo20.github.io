@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 1707번: 이분 그래프"
 date: 2025-05-10 22:56:07 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, BFS, graph, bipartite]
 ---
 
 ## **문제 & 링크**

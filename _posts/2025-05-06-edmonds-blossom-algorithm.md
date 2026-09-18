@@ -4,7 +4,7 @@ redirect_from:
 title: "Edmonds' Blossom Algorithm"
 date: 2025-05-06 20:52:50 +0900
 categories: [Algorithm, Graph]
-tags: []
+tags: [graph, maximum-matching, Blossom]
 ---
 
 ### **Edmonds' Blossom Algorithm (에드먼즈 블라썸 알고리즘)**

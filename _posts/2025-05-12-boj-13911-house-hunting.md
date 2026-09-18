@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 13911번: 집 구하기"
 date: 2025-05-12 23:27:50 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, Dijkstra, graph]
 ---
 
 ## **문제 & 링크**

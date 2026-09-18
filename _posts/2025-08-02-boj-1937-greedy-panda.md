@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 1937번: 욕심쟁이 판다"
 date: 2025-08-02 02:29:35 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, DP, DFS]
 ---
 
 ## **문제 & 링크**

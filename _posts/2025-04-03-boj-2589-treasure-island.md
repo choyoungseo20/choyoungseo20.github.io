@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 2589번: 보물섬"
 date: 2025-04-03 00:10:18 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, BFS, graph]
 ---
 
 ## **문제&링크**

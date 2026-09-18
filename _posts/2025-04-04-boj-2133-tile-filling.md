@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 2133번: 타일 채우기"
 date: 2025-04-04 00:06:26 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, DP]
 ---
 
 ## **문제 & 링크**

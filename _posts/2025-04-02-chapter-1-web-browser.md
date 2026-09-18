@@ -4,7 +4,7 @@ redirect_from:
 title: "1장 웹 브라우저"
 date: 2025-04-02 23:50:20 +0900
 categories: [CS, 네트워크]
-tags: []
+tags: [HTTP, DNS, web-browser]
 ---
 
 ## 1. HTTP 리퀘스트 메시지

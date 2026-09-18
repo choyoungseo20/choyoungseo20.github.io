@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 16395번: 파스칼의 삼각형"
 date: 2025-04-04 00:05:45 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, DP]
 ---
 
 ## **문제&링크**

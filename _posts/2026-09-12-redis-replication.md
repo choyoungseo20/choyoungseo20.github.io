@@ -2,7 +2,7 @@
 title: "Redis 레플리카 (Replication)"
 date: 2026-09-12 21:30:00 +0900
 categories: [Backend, Redis]
-tags: [Redis, replication]
+tags: [Redis, replication, HA]
 ---
 
 ### **레플리카 구성**

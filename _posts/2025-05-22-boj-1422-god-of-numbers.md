@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 1422번: 숫자의 신"
 date: 2025-05-22 16:23:10 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, sorting, greedy]
 ---
 
 ## **문제 & 링크**

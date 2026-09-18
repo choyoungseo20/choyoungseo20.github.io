@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 1916번: 최소 비용 구하기"
 date: 2025-04-04 00:06:10 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, Dijkstra, graph]
 ---
 
 ### **문제 & 링크**

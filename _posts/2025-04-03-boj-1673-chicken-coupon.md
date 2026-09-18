@@ -4,7 +4,7 @@ redirect_from:
 title: "[백준/C++] 1673번: 치킨 쿠폰"
 date: 2025-04-03 00:01:32 +0900
 categories: [Algorithm, Koala]
-tags: []
+tags: [BOJ, C++, math, implementation]
 ---
 
 ## **문제 & 링크**

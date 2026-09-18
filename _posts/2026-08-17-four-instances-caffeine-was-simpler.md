@@ -3,7 +3,7 @@ title: "Caffeine 유지 결정 기록"
 description: API를 4대로 늘리기 전에 Redis를 비교했고, 실측을 근거로 Caffeine을 유지했다. 판단 근거와 재검토 조건을 기록한다.
 date: 2026-08-17 05:20:00 +0900
 categories: [Backend, Architecture]
-tags: [cache, Caffeine, Redis, decision-record, multi-instance]
+tags: [Spring Boot, Spring Data Redis, Lettuce, Caffeine, Redis, cache, multi-instance, decision-record]
 ---
 
 ### **결정**
