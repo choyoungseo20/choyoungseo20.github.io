@@ -3,7 +3,7 @@ title: 그래서 캐시는 몇 종까지 버틸까
 description: '"워킹셋 수백 종"으로 남겨둔 재검토 조건을 직접 측정했다. L1 적중률은 798~800종에서 무너지기 시작했고, 접근 분포를 바꾸자 경계도 움직였다.'
 date: 2026-08-17 05:40:00 +0900
 categories: [Backend, Architecture]
-tags: [cache, caffeine, redis, load-testing, capacity-planning]
+tags: [cache, Caffeine, Redis, load-testing, capacity-planning]
 ---
 
 [결정 기록](/posts/four-instances-caffeine-was-simpler/)에서 인프로세스 캐시 단독 유지를 확정하고, 뒤집을 조건을 표로 적었다. 그 표의 첫 줄은 이랬다. "워킹셋이 수백 종목으로 확대되면 다시 잰다."

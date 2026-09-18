@@ -3,7 +3,7 @@ title: 매달 30GB씩 쌓이던 갤러리를 뜯어고치기까지
 description: 갤러리 업로드 파이프라인을 고쳐 월 S3 증가량을 30GB에서 3GB로, 사진 1장 업로드 시간을 3초에서 1초로 줄인 과정이다.
 date: 2026-08-16 09:00:00 +0900
 categories: [Backend, Performance]
-tags: [s3, upload, webp, deduplication, image-optimization]
+tags: [S3, upload, WebP, deduplication, image-optimization]
 ---
 
 지난 3월, 느리고 저장 비용도 많이 들던 갤러리 업로드 구조를 고쳤다. 당시 병목을 찾아간 과정을 정리한다.

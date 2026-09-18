@@ -3,7 +3,7 @@ title: 서버 4대에서 Redis를 넣지 않은 이유
 description: API를 4대로 늘리기 전에 Redis를 비교했고, 실측을 근거로 Caffeine을 유지했다. 판단 근거와 재검토 조건을 기록한다.
 date: 2026-08-17 05:20:00 +0900
 categories: [Backend, Architecture]
-tags: [cache, caffeine, redis, decision-record, multi-instance]
+tags: [cache, Caffeine, Redis, decision-record, multi-instance]
 ---
 
 ETF 가격 변동 설명 조회 API는 단일 인스턴스에서 인프로세스 캐시(Caffeine)로 `(ticker, trade_date)` 결과를 짧은 TTL 동안 재사용한다. 이 구성을 증권사 관리 환경의 로드밸런서 뒤 4대로 확장하는 것이 과제였다.

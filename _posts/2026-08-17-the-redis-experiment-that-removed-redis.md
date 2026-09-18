@@ -3,7 +3,7 @@ title: 75번 부하를 걸어 Redis를 빼기까지
 description: 네 가지 캐시 구성을 75회 부하 실험으로 비교했다. 응답 지연보다 DB 로딩과 콜드 스타트에서 차이가 났고, 현재 조건에서 Redis 도입을 기각했다.
 date: 2026-08-17 05:00:00 +0900
 categories: [Backend, Architecture]
-tags: [cache, caffeine, redis, load-testing, multi-instance]
+tags: [cache, Caffeine, Redis, load-testing, multi-instance]
 ---
 
 [앞 글](/posts/multi-instance-does-not-require-redis/)에서 인프로세스 캐시가 공유되지 않는다는 사실만으로 공유 캐시가 정당화되지는 않는다고 정리하고, 무엇을 재야 하는지 적었다. 이 글은 그 뒤에 진행한 실험 기록이다.
