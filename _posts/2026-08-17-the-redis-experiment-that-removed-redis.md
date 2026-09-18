@@ -1,5 +1,5 @@
 ---
-title: "[캐시 전략] 4가지 캐시 구성 부하 실험"
+title: "4가지 캐시 구성 부하 실험"
 description: 네 가지 캐시 구성을 75회 부하 실험으로 비교했다. 응답 지연보다 DB 로딩과 콜드 스타트에서 차이가 났고, 현재 조건에서 Redis 도입을 기각했다.
 date: 2026-08-17 05:00:00 +0900
 categories: [Backend, Architecture]

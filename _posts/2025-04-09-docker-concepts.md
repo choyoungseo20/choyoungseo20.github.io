@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - /posts/docker-docker-개념/
-title: "[Docker] Docker 개념"
+title: "Docker 개념"
 date: 2025-04-09 21:41:33 +0900
 categories: [Backend, Docker]
 tags: []

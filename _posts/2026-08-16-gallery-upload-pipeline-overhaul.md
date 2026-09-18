@@ -1,5 +1,5 @@
 ---
-title: "[트러블슈팅] 갤러리 업로드 파이프라인"
+title: "갤러리 업로드 파이프라인"
 description: 갤러리 업로드 파이프라인을 고쳐 월 S3 증가량을 30GB에서 3GB로, 사진 1장 업로드 시간을 3초에서 1초로 줄인 과정
 date: 2026-08-16 09:00:00 +0900
 categories: [Backend, Performance]

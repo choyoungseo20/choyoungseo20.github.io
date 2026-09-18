@@ -1,5 +1,5 @@
 ---
-title: "[Docker] Dockerfile"
+title: "Dockerfile"
 date: 2025-04-10 00:12:25 +0900
 categories: [Backend, Docker]
 tags: []

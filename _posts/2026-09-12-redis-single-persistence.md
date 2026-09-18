@@ -1,5 +1,5 @@
 ---
-title: "[Redis 아키텍처] 싱글 구성과 영속성 (RDB, AOF)"
+title: "Redis 싱글 구성과 영속성 (RDB, AOF)"
 date: 2026-09-12 21:00:00 +0900
 categories: [Backend, Redis]
 tags: [Redis, persistence, RDB, AOF]

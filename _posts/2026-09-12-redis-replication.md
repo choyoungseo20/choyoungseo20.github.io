@@ -1,5 +1,5 @@
 ---
-title: "[Redis 아키텍처] 레플리카 (Replication)"
+title: "Redis 레플리카 (Replication)"
 date: 2026-09-12 21:30:00 +0900
 categories: [Backend, Redis]
 tags: [Redis, replication]

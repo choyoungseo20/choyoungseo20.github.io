@@ -1,5 +1,5 @@
 ---
-title: "[Docker] Docker Volume"
+title: "Docker Volume"
 date: 2025-04-09 23:45:03 +0900
 categories: [Backend, Docker]
 tags: []

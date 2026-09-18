@@ -1,5 +1,5 @@
 ---
-title: "[Docker] Docker CLI"
+title: "Docker CLI"
 date: 2025-04-09 22:19:57 +0900
 categories: [Backend, Docker]
 tags: []

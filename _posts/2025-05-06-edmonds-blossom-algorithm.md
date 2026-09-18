@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - /posts/그래프-edmonds-blossom-algorithm/
-title: "[Graph] Edmonds' Blossom Algorithm"
+title: "Edmonds' Blossom Algorithm"
 date: 2025-05-06 20:52:50 +0900
 categories: [Algorithm, Graph]
 tags: []

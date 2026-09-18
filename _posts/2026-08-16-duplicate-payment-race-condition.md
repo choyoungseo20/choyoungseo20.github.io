@@ -1,5 +1,5 @@
 ---
-title: "[트러블슈팅] 이중 결제 (Race Condition)"
+title: "이중 결제 (Race Condition)"
 description: 로그상 정상으로 보였던 이중 과금의 25초 레이스를 찾아, 조건부 UPDATE로 결제 선점을 원자화한 기록
 date: 2026-08-16 09:30:00 +0900
 categories: [Backend, Database]

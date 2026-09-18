@@ -1,5 +1,5 @@
 ---
-title: "[Redis 아키텍처] 센티널 (Sentinel)"
+title: "Redis 센티널 (Sentinel)"
 date: 2026-09-13 21:00:00 +0900
 categories: [Backend, Redis]
 tags: [Redis, Sentinel, HA, failover]

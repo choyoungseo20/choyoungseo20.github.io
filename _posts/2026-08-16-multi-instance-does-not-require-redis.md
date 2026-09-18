@@ -1,5 +1,5 @@
 ---
-title: "[캐시 전략] 다중 인스턴스와 Redis 도입 판단"
+title: "다중 인스턴스와 Redis 도입 판단"
 description: API를 4대로 늘린다고 Redis가 바로 필요한 것은 아니었다. 성능, 정합성, 중복 로딩을 나눠 보고 다음 부하 실험에서 확인할 지표를 정리했다.
 date: 2026-08-16 11:00:00 +0900
 categories: [Backend, Architecture]

@@ -1,5 +1,5 @@
 ---
-title: "[Redis 아키텍처] 클러스터 (Cluster)"
+title: "Redis 클러스터 (Cluster)"
 date: 2026-09-13 21:30:00 +0900
 categories: [Backend, Redis]
 tags: [Redis, Cluster, HA, sharding]
