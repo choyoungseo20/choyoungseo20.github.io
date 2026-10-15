@@ -196,7 +196,7 @@ revoke 범위가 아니라 다른 컨슈머로 이동하는 파티션 수를 줄
 > 리밸런싱 비용은 revoke 범위가 아니라 진행 중인 작업이 다른 컨슈머로 이동하는 파티션 수가 결정한다. 재전달과 중복 실행을 나눠 관찰해야 개선 지점이 보인다.
 {: .prompt-tip }
 
-- 코드와 실험 스크립트 : [choyoungseo20/transcourse](https://github.com/choyoungseo20/transcourse/tree/kafka-rebalance-2026-10-04)
+- 코드와 실험 스크립트 : [choyoungseo20/transcourse](https://github.com/choyoungseo20/transcourse)
 - 컨슈머 그룹 동작 정리 : [Kafka 컨슈머 그룹과 오프셋](/posts/kafka-consumer-group/)
 
 <br>

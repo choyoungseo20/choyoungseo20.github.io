@@ -198,7 +198,7 @@ public CircuitBreaker of(String etfCode) {
 > 부분 장애를 격리하려면, 실패를 판단하는 범위를 실제 장애 범위에 맞춰야 한다.
 {: .prompt-tip }
 
-- 코드와 실험 스크립트 : [alphaeveryday/edge app-api](https://github.com/alphaeveryday/edge/tree/app-api-2026-10-04/src/apps/cloud/app-api)
+- 코드와 실험 스크립트 : [alphaeveryday/edge app-api](https://github.com/alphaeveryday/edge/tree/dev/apps/etforca/app-api)
 - 클러스터 동작 정리 : [Redis 클러스터 (Cluster)](/posts/redis-cluster/)
 - 센티널 동작 정리 : [Redis 센티널 (Sentinel)](/posts/redis-sentinel/)
 
