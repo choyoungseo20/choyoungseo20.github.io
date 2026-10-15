@@ -32,7 +32,7 @@ ETF Orca 앱의 ETF 전망 투표(BUY·WAIT·SELL)는 집계를 Redis에, 원본
 
 센티널 실험에서 넣은 장치는 두 가지였다.
 
-- Fail-Fast : Lettuce의 disconnectedBehavior를 REJECT_COMMANDS로 바꾸고 명령 타임아웃을 500ms로 줄였다. 연결이 끊긴 동안 명령을 큐에 쌓아 두며 요청 스레드를 붙잡지 않게 하기 위해서다.
+- Fail-Fast : Lettuce의 disconnectedBehavior를 REJECT_COMMANDS로 바꾸고 명령 타임아웃을 500ms로 줄였다. 연결이 끊긴 동안 명령을 큐에 쌓아 두고 요청 스레드를 붙잡는 일을 막기 위해서다.
 - 서킷 브레이커 : Resilience4j 서킷 하나(`redis`)가 저장과 조회의 Redis 호출을 감쌌다.
 
 ```yaml
