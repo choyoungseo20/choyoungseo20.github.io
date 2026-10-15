@@ -2,7 +2,7 @@
 title: "Kafka 클러스터 구성 (KRaft, Controller, Broker)"
 date: 2026-09-19 00:00:00 +0900
 categories: [Backend, Kafka]
-tags: [Kafka, KRaft, controller, broker, replication]
+tags: [TransCourse, Kafka, KRaft, controller, broker, replication]
 ---
 
 ### **Kafka의 기본 모델**
@@ -156,4 +156,5 @@ log.dirs=/var/lib/kafka/data
 > 2. [토픽과 파티션 (Replication, ISR)](/posts/kafka-topic-partition-replication/)
 > 3. [프로듀서 (acks, 파티셔너, 멱등성)](/posts/kafka-producer/)
 > 4. [컨슈머 그룹과 오프셋 (Group Coordinator, Rebalancing)](/posts/kafka-consumer-group/)
+> 5. [적용 : 컨슈머 증설과 리밸런싱 비용 (TransCourse)](/posts/kafka-rebalance-duplicate-encoding/)
 {: .prompt-info }

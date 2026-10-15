@@ -198,3 +198,14 @@ RangeAssignor는 리밸런싱마다 파티션을 전부 회수하므로, 6개 �
 
 - 코드와 실험 스크립트 : [choyoungseo20/transcourse](https://github.com/choyoungseo20/transcourse/tree/kafka-rebalance-2026-10-04)
 - 컨슈머 그룹 동작 정리 : [Kafka 컨슈머 그룹과 오프셋](/posts/kafka-consumer-group/)
+
+<br>
+
+> **Kafka 아키텍처 시리즈**
+>
+> 1. [클러스터 구성 (KRaft, Controller, Broker)](/posts/kafka-cluster-kraft/)
+> 2. [토픽과 파티션 (Replication, ISR)](/posts/kafka-topic-partition-replication/)
+> 3. [프로듀서 (acks, 파티셔너, 멱등성)](/posts/kafka-producer/)
+> 4. [컨슈머 그룹과 오프셋 (Group Coordinator, Rebalancing)](/posts/kafka-consumer-group/)
+> 5. **적용 : 컨슈머 증설과 리밸런싱 비용 (TransCourse)**
+{: .prompt-info }

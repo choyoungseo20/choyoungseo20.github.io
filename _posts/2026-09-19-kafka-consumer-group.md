@@ -2,7 +2,7 @@
 title: "Kafka 컨슈머 그룹과 오프셋 (Group Coordinator, Rebalancing)"
 date: 2026-09-19 00:30:00 +0900
 categories: [Backend, Kafka]
-tags: [Kafka, consumer-group, offset, rebalancing, group-coordinator]
+tags: [TransCourse, Kafka, consumer-group, offset, rebalancing, group-coordinator]
 ---
 
 ### **컨슈머 그룹 구성**
@@ -164,4 +164,5 @@ partition.assignment.strategy=org.apache.kafka.clients.consumer.CooperativeStick
 > 2. [토픽과 파티션 (Replication, ISR)](/posts/kafka-topic-partition-replication/)
 > 3. [프로듀서 (acks, 파티셔너, 멱등성)](/posts/kafka-producer/)
 > 4. **컨슈머 그룹과 오프셋 (Group Coordinator, Rebalancing)**
+> 5. [적용 : 컨슈머 증설과 리밸런싱 비용 (TransCourse)](/posts/kafka-rebalance-duplicate-encoding/)
 {: .prompt-info }

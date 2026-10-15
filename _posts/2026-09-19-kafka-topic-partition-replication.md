@@ -2,7 +2,7 @@
 title: "Kafka 토픽과 파티션 (Replication, ISR)"
 date: 2026-09-19 00:10:00 +0900
 categories: [Backend, Kafka]
-tags: [Kafka, KRaft, partition, replication, ISR]
+tags: [TransCourse, Kafka, KRaft, partition, replication, ISR]
 ---
 
 ### **토픽과 파티션 구성**
@@ -129,4 +129,5 @@ cleanup.policy=delete
 > 2. **토픽과 파티션 (Replication, ISR)**
 > 3. [프로듀서 (acks, 파티셔너, 멱등성)](/posts/kafka-producer/)
 > 4. [컨슈머 그룹과 오프셋 (Group Coordinator, Rebalancing)](/posts/kafka-consumer-group/)
+> 5. [적용 : 컨슈머 증설과 리밸런싱 비용 (TransCourse)](/posts/kafka-rebalance-duplicate-encoding/)
 {: .prompt-info }

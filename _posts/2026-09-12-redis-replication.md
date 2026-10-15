@@ -2,7 +2,7 @@
 title: "Redis 레플리카 (Replication)"
 date: 2026-09-12 21:30:00 +0900
 categories: [Backend, Redis]
-tags: [Redis, replication, HA]
+tags: [ETF Orca, Redis, replication, HA]
 ---
 
 ### **레플리카 구성**
@@ -126,4 +126,5 @@ min-replicas-max-lag [초]
 > 2. **레플리카 (Replication)**
 > 3. [센티널 (Sentinel)](/posts/redis-sentinel/)
 > 4. [클러스터 (Cluster)](/posts/redis-cluster/)
+> 5. [적용 : 샤드별 서킷 브레이커 (ETF Orca)](/posts/redis-cluster-shard-circuit-breaker/)
 {: .prompt-info }

@@ -2,7 +2,7 @@
 title: "Redis 싱글 구성과 영속성 (RDB, AOF)"
 date: 2026-09-12 21:00:00 +0900
 categories: [Backend, Redis]
-tags: [Redis, persistence, RDB, AOF]
+tags: [ETF Orca, Redis, persistence, RDB, AOF]
 ---
 
 ### **싱글 구성**
@@ -99,4 +99,5 @@ RDB/AOF 파일은 Redis와 같은 호스트의 디스크에 있다.
 > 2. [레플리카 (Replication)](/posts/redis-replication/)
 > 3. [센티널 (Sentinel)](/posts/redis-sentinel/)
 > 4. [클러스터 (Cluster)](/posts/redis-cluster/)
+> 5. [적용 : 샤드별 서킷 브레이커 (ETF Orca)](/posts/redis-cluster-shard-circuit-breaker/)
 {: .prompt-info }

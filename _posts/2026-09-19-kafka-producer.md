@@ -2,7 +2,7 @@
 title: "Kafka 프로듀서 (acks, 파티셔너, 멱등성)"
 date: 2026-09-19 00:20:00 +0900
 categories: [Backend, Kafka]
-tags: [Kafka, producer, acks, idempotence, partitioner]
+tags: [TransCourse, Kafka, producer, acks, idempotence, partitioner]
 ---
 
 ### **프로듀서 구성**
@@ -140,4 +140,5 @@ compression.type=lz4
 > 2. [토픽과 파티션 (Replication, ISR)](/posts/kafka-topic-partition-replication/)
 > 3. **프로듀서 (acks, 파티셔너, 멱등성)**
 > 4. [컨슈머 그룹과 오프셋 (Group Coordinator, Rebalancing)](/posts/kafka-consumer-group/)
+> 5. [적용 : 컨슈머 증설과 리밸런싱 비용 (TransCourse)](/posts/kafka-rebalance-duplicate-encoding/)
 {: .prompt-info }

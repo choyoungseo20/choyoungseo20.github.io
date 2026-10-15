@@ -201,3 +201,14 @@ public CircuitBreaker of(String etfCode) {
 - 코드와 실험 스크립트 : [alphaeveryday/edge app-api](https://github.com/alphaeveryday/edge/tree/app-api-2026-10-04/src/apps/cloud/app-api)
 - 클러스터 동작 정리 : [Redis 클러스터 (Cluster)](/posts/redis-cluster/)
 - 센티널 동작 정리 : [Redis 센티널 (Sentinel)](/posts/redis-sentinel/)
+
+<br>
+
+> **Redis 아키텍처 시리즈**
+>
+> 1. [싱글 구성과 영속성 (RDB, AOF)](/posts/redis-single-persistence/)
+> 2. [레플리카 (Replication)](/posts/redis-replication/)
+> 3. [센티널 (Sentinel)](/posts/redis-sentinel/)
+> 4. [클러스터 (Cluster)](/posts/redis-cluster/)
+> 5. **적용 : 샤드별 서킷 브레이커 (ETF Orca)**
+{: .prompt-info }

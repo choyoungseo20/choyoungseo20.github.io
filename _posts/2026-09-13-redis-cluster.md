@@ -2,7 +2,7 @@
 title: "Redis 클러스터 (Cluster)"
 date: 2026-09-13 21:30:00 +0900
 categories: [Backend, Redis]
-tags: [Redis, Cluster, HA, sharding]
+tags: [ETF Orca, Redis, Cluster, HA, sharding]
 ---
 
 ### **클러스터 구성**
@@ -201,4 +201,5 @@ cluster-allow-reads-when-down [yes | no]
 > 2. [레플리카 (Replication)](/posts/redis-replication/)
 > 3. [센티널 (Sentinel)](/posts/redis-sentinel/)
 > 4. **클러스터 (Cluster)**
+> 5. [적용 : 샤드별 서킷 브레이커 (ETF Orca)](/posts/redis-cluster-shard-circuit-breaker/)
 {: .prompt-info }

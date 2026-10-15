@@ -2,7 +2,7 @@
 title: "Redis 센티널 (Sentinel)"
 date: 2026-09-13 21:00:00 +0900
 categories: [Backend, Redis]
-tags: [Redis, Sentinel, HA, failover]
+tags: [ETF Orca, Redis, Sentinel, HA, failover]
 ---
 
 ### **센티널 구성**
@@ -139,4 +139,5 @@ failover는 자동화됐지만, 그 사이의 공백은 존재
 > 2. [레플리카 (Replication)](/posts/redis-replication/)
 > 3. **센티널 (Sentinel)**
 > 4. [클러스터 (Cluster)](/posts/redis-cluster/)
+> 5. [적용 : 샤드별 서킷 브레이커 (ETF Orca)](/posts/redis-cluster-shard-circuit-breaker/)
 {: .prompt-info }
