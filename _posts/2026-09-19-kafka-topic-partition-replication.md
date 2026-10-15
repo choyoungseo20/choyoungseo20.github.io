@@ -61,7 +61,7 @@ leader를 따라잡고 있는 replica의 집합
 |---|---|---|
 | RF 3, min.insync.replicas 1 | 계속된다 | ISR이 1로 줄면 leader 한 대에만 남는다 |
 | RF 3, min.insync.replicas 2 | 계속된다 | 항상 2대 이상에 기록된 뒤 응답한다 |
-| RF 3, min.insync.replicas 3 | 거부된다 | 유실은 없지만 한 대만 죽어도 저장이 멈춘다 |
+| RF 3, min.insync.replicas 3 | 거부된다 | 유실은 없지만 한 대만 장애가 나도 저장이 멈춘다 |
 
 **RF는 복제본의 수이고, 실제 안전성은 ISR 크기와 min.insync.replicas가 정한다.**
 
@@ -83,13 +83,13 @@ follower 장애는 leader의 lag 판정으로, leader 장애는 Controller의 Br
 
 Controller가 ISR 중에서 새 leader를 선정하고, follower는 leader epoch 기준으로 로그를 맞춤
 
-1. Controller는 죽은 leader의 파티션마다 ISR에 남은 replica 중 하나를 새 leader로 정한다. ISR 안의 replica는 모두 HW까지 기록을 마쳤으므로, 컨슈머에게 보였던 메시지는 유실되지 않는다.
+1. Controller는 장애가 난 leader의 파티션마다 ISR에 남은 replica 중 하나를 새 leader로 정한다. ISR 안의 replica는 모두 HW까지 기록을 마쳤으므로, 컨슈머에게 보였던 메시지는 유실되지 않는다.
 2. HW 이후의 메시지는 새 leader가 가진 만큼만 남는다. acks=1로 보낸 메시지는 leader에만 기록됐을 수 있어 이 구간에서 사라질 수 있다.
 3. 나머지 follower는 새 leader의 로그와 자기 로그를 비교해 새 leader에 없는 부분을 잘라내고(truncate) 다시 fetch를 시작한다.
 4. ISR에 남은 replica가 없으면, Kafka 4.1부터 새 클러스터에 기본으로 켜지는 ELR(Eligible Leader Replicas) 중에서 leader를 고른다. ELR도 없으면 파티션은 leader 없이 멈춘다. unclean.leader.election.enable을 켜면 ISR 밖의 replica가 leader가 되지만, 그 replica에 없던 메시지는 사라진다.
-5. 죽었던 Broker가 복귀하면 follower로 합류해 따라잡고, ISR에 복귀한다. auto.leader.rebalance.enable(default true)이 켜져 있으면 Controller가 주기적으로 원래 leader(preferred leader)에게 leader 자리를 되돌린다.
+5. 장애가 났던 Broker가 복구되면 follower로 합류해 따라잡고, ISR에 복귀한다. auto.leader.rebalance.enable(default true)이 켜져 있으면 Controller가 주기적으로 원래 leader(preferred leader)에게 leader 자리를 되돌린다.
 
-**ISR 안에서 leader를 뽑으면 HW까지는 보존되고, HW 이후는 acks 설정이 운명을 정한다.**
+**ISR 안에서 leader를 뽑으면 HW까지는 보존되고, HW 이후의 유실 여부는 acks 설정이 정한다.**
 
 <br>
 

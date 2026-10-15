@@ -22,7 +22,7 @@ tags: [TransCourse, Kafka, rebalancing, consumer-group, CooperativeStickyAssigno
 
 ### **배경 : 긴 작업을 Kafka로 처리하는 구조**
 
-작업 원장은 MySQL에 두고, Kafka에는 작업 ID만 전달
+작업 상태는 MySQL에 두고, Kafka에는 작업 ID만 전달
 
 ![](/assets/img/posts/2026-10-15-kafka-rebalance-duplicate-encoding-01.png)
 
@@ -81,7 +81,7 @@ public void start() {
 
 - 새 시도가 시작되면 먼저 돌던 시도는 끝까지 실행되지만, 결과를 기록하는 순간 시도 번호가 달라 거부된다.
 
-**결과는 지켰지만, 거부된 시도가 쓴 인코딩 시간은 그대로 낭비된다. 그 크기를 재기로 했다.**
+**결과는 지켰지만, 거부된 시도가 쓴 인코딩 시간은 그대로 낭비된다. 그 규모를 측정하기로 했다.**
 
 <br>
 
@@ -139,7 +139,7 @@ revoke 범위가 아니라 다른 컨슈머로 이동하는 파티션 수를 줄
 
 ![](/assets/img/posts/2026-10-15-kafka-rebalance-duplicate-encoding-04.png)
 
-- Range : 파티션을 멤버 ID 정렬 순서대로 나눈다. 새 멤버의 ID가 정렬에서 어디에 들어가느냐에 따라 이동하는 파티션 수가 회차마다 1~5개로 흔들렸다.
+- Range : 파티션을 멤버 ID 정렬 순서대로 나눈다. 새 멤버의 ID가 정렬에서 어디에 들어가느냐에 따라 이동하는 파티션 수가 회차마다 1~5개로 달라졌다.
 - Sticky : 전부 revoke하지만, 다시 나눌 때 기존 배치를 최대한 유지한다.
 - CooperativeSticky : 옮겨야 하는 파티션만 revoke하고 나머지는 계속 처리한다.
 

@@ -65,7 +65,7 @@ PSYNC [replid] [offset]
 - 전 노드가 동시에 재시작되면(정전 등) 메모리의 사본은 모두 사라진다. 디스크에 남은 RDB/AOF만이 복구 수단이다.
 - 잘못된 명령도 그대로 복제된다. Master에서 FLUSHALL을 실행하면 Replica의 데이터도 함께 사라진다.
   - 이 경우 RDB 백업으로 해당 시점의 데이터 복구가 가능하다.
-- 함정 : 영속성 없는 Master가 자동 재기동되면 빈 데이터셋으로 뜨고, Replica들이 그것을 복제해서 전부 비워진다.
+- 주의 : 영속성 없는 Master가 자동 재기동되면 빈 데이터셋으로 뜨고, Replica들이 그것을 복제해서 전부 비워진다.
 - 재시작 후에도 partial sync가 가능하려면, replid/offset이 RDB에 저장되어 있어야 한다.
 
 <br>
@@ -74,11 +74,11 @@ PSYNC [replid] [offset]
 
 ![](/assets/img/posts/2026-09-12-redis-replication-02.png)
 
-Master가 죽으면 수동으로 failover 필요
+Master 장애 시 수동으로 failover 필요
 
 1. 모니터링/알람으로 장애를 인지한다.
 2. Replica를 Master로 승격한다. (REPLICAOF NO ONE, Replica가 여러 대면 offset이 가장 큰 것을 고른다)
-3. 복제 구성을 다시 잡는다. (되살아난 옛 Master는 Replica로 강등해야 Master가 둘이 되는 것을 막는다)
+3. 복제 구성을 다시 잡는다. (복구된 기존 Master는 Replica로 강등해야 Master가 둘이 되는 것을 막는다)
 4. 클라이언트에서 Master 주소를 재설정한다.
 
 **사람이 개입해야 하므로, failover 자동화가 필요하다.**
@@ -90,7 +90,7 @@ Master가 죽으면 수동으로 failover 필요
 
 ### **Replica가 스스로 승격하지 못하는 이유**
 
-Replica는 Master가 죽은 것인지, 자신의 네트워크가 끊긴 것인지 구분하지 못한다. 이 상태에서 스스로 승격해버리면, 살아 있는 Master가 write를 받는 동안 새 Master도 write를 받아 서로 다른 데이터가 쌓인다. (split-brain)
+Replica는 Master에 장애가 난 것인지, 자신의 네트워크가 끊긴 것인지 구분하지 못한다. 이 상태에서 스스로 승격해버리면, 살아 있는 Master가 write를 받는 동안 새 Master도 write를 받아 서로 다른 데이터가 쌓인다. (split-brain)
 
 **그래서 승격 판정은 외부에서 여럿이 합의해서 내려야 한다.**
 
@@ -114,7 +114,7 @@ min-replicas-max-lag [초]
 <br>
 
 > 레플리카를 이용하면 디스크를 잃어도 데이터를 복구할 수 있다.  
-> 하지만 Master가 죽은 새벽 3시에, 승격은 누가 할까?  
+> 하지만 Master 장애가 사람이 없는 시간에 나면, 승격은 누가 할까?  
 > 다음 편에서는 감시와 합의로 failover를 자동화해 이 한계를 해결하는 [센티널](/posts/redis-sentinel/)을 다룬다.
 {: .prompt-tip }
 

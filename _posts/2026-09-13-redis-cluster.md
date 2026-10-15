@@ -11,7 +11,7 @@ tags: [ETF Orca, Redis, Cluster, HA, sharding]
 
 ![](/assets/img/posts/2026-09-13-redis-cluster-01.png)
 
-- 센티널까지로 failover는 자동화됐지만, write와 메모리는 여전히 Master 한 대의 한계에 갇혀 있다. 그래서 데이터 자체를 나눈다.
+- 센티널까지로 failover는 자동화됐지만, write와 메모리는 여전히 Master 한 대의 용량을 넘을 수 없다. 그래서 데이터 자체를 나눈다.
 - 센티널과 달리 감시 전용 프로세스가 없고, 노드 간 gossip으로 서로 감시한다. 고가용성(HA)은 클러스터에 내장되어 있어, 센티널을 따로 두지 않는다.
 - 데이터는 16384개의 슬롯으로 나뉘어 Master들에 분배된다.
 - Master는 3대 이상이어야 한다. FAIL 판정과 승격 승인 모두 Master 과반이 하므로, 2대면 한 대 장애 시 과반이 성립하지 않는다. (센티널을 3대 이상 두는 것과 같은 논리)
@@ -68,7 +68,7 @@ redis-cli --cluster create [6개 노드 주소] --cluster-replicas 1
 3. 클라이언트는 MOVED를 받으면 슬롯 맵을 갱신하고, 이후 같은 슬롯의 요청은 처음부터 담당 노드로 보낸다.
 
 - 노드는 요청을 대신 전달(proxy)하지 않고 리다이렉트만 한다. 즉 라우팅 책임은 클라이언트에 있다.
-- 클러스터를 지원하는 클라이언트는 시작할 때 슬롯 맵 전체를 받아 캐싱한다. MOVED는 맵이 낡았을 때의 보정 수단이다.
+- 클러스터를 지원하는 클라이언트는 시작할 때 슬롯 맵 전체를 받아 캐싱한다. MOVED는 슬롯 맵이 최신이 아닐 때의 보정 수단이다.
 - 슬롯을 담당하는 Master는 RW, 그 Replica는 기본 RO다.
   - 조회 분산 : Replica는 기본적으로 조회 요청도 MOVED로 Master에 돌려보낸다. 연결에서 READONLY를 보내야 Replica가 직접 조회를 처리한다.
 
@@ -131,9 +131,9 @@ redis-cli --cluster rebalance [노드 주소]
 
 Master 과반의 승인을 받은 Replica가 스스로 failover 실행
 
-1. 승격해서 옛 Master의 슬롯을 인수한다.
+1. 승격해서 기존 Master의 슬롯을 인수한다.
    - 승격을 지정해주는 리더는 없다. 대신 복제 offset이 가장 앞선 Replica가 가장 먼저 투표를 요청하도록, 요청까지의 지연이 차등 적용된다.
-2. 새 Master가 슬롯 소유권을 gossip으로 전파하고, 옛 Master는 복구되면 새 Master의 Replica로 합류한다.
+2. 새 Master가 슬롯 소유권을 gossip으로 전파하고, 기존 Master는 복구되면 새 Master의 Replica로 합류한다.
 3. 클라이언트는 MOVED 응답을 받으면 CLUSTER SLOTS(7.0부터는 CLUSTER SHARDS 권장)로 슬롯 맵을 갱신한다.
 
 > 복제는 여기서도 비동기다. 고립된 Master가 write를 멈추기 전(node-timeout 이내)에 받은 write는, 승격과 함께 버려진다.
@@ -181,7 +181,7 @@ cluster-allow-reads-when-down [yes | no]
 
 | 구성 | 해결한 것 | 남은 한계 |
 |---|---|---|
-| 싱글 + 영속성 | 프로세스가 죽어도 데이터 복구 | 디스크를 잃으면 데이터도 잃음 |
+| 싱글 + 영속성 | 프로세스가 다운되어도 데이터 복구 | 디스크를 잃으면 데이터도 잃음 |
 | 레플리카 | 다른 호스트에 데이터 이중화 | failover가 수동 |
 | 센티널 | failover 자동화 (HA 완성) | Master 한 대의 메모리·저장 한계 |
 | 클러스터 | 샤딩으로 수평 확장 (HA 내장) | 멀티키 제약, 운영 복잡도 |

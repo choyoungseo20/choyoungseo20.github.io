@@ -42,7 +42,7 @@ poll()로 파티션 leader에서 메시지를 가져오고, 처리한 오프셋�
 
 - poll()은 할당된 파티션들의 leader Broker에 fetch 요청을 보내 배치로 메시지를 받는다. Coordinator는 fetch 경로에 관여하지 않는다.
 - 오프셋 커밋은 다음에 조회할 오프셋을 \_\_consumer\_offsets에 기록하는 일이다. Coordinator는 오프셋 토픽 파티션의 ISR 전체에 복제된 뒤에야 커밋 성공을 응답한다. 컨슈머가 재시작되거나 파티션이 다른 인스턴스로 넘어가도 이 지점부터 이어간다.
-- enable.auto.commit(default true)이면 auto.commit.interval.ms(default 5초)마다 poll() 안에서 자동 커밋된다. 처리 중 죽으면 마지막 커밋 이후 메시지가 다시 조회되어 중복 처리가 생기고, 처리 전에 커밋되면 유실이 생긴다.
+- enable.auto.commit(default true)이면 auto.commit.interval.ms(default 5초)마다 poll() 안에서 자동 커밋된다. 처리 중 컨슈머가 종료되면 마지막 커밋 이후 메시지가 다시 조회되어 중복 처리가 생기고, 처리 전에 커밋되면 유실이 생긴다.
 - 수동 커밋(commitSync, commitAsync)은 처리를 끝낸 뒤 커밋하므로 at-least-once가 된다. 중복은 처리 쪽의 멱등성으로 막는다.
 - 커밋 오프셋은 offsets.retention.minutes(default 7일) 동안 그룹이 비어 있으면 삭제된다.
 
@@ -64,11 +64,11 @@ poll()로 파티션 leader에서 메시지를 가져오고, 처리한 오프셋�
 - eager 방식은 리밸런싱 동안 모든 멤버가 모든 파티션을 내려놓고 다시 받는다. 그 사이 그룹 전체의 조회가 멈춘다.
 - cooperative 방식(CooperativeStickyAssignor)은 옮겨야 하는 파티션만 내려놓고 나머지는 계속 처리한다. 두 번의 리밸런싱으로 나뉘지만 정지 구간이 줄어든다.
 - 정적 멤버십(group.instance.id)을 주면 인스턴스가 재시작해도 session.timeout.ms 안에 같은 ID로 돌아오면 리밸런싱 없이 같은 파티션을 돌려받는다. 배포 중 불필요한 리밸런싱을 줄인다.
-- 리밸런싱 직전에 커밋하지 않은 오프셋은 새 담당자가 다시 처리한다. 리밸런싱이 잦으면 중복 처리도 잦아진다.
+- 리밸런싱 직전에 커밋하지 않은 오프셋은 새로 할당받은 컨슈머가 다시 처리한다. 리밸런싱이 잦으면 중복 처리도 잦아진다.
 
 | 방식 | 정지 범위 | 특징 |
 |---|---|---|
-| eager | 그룹 전체 | 단순하지만 멤버 하나의 변화에도 전원이 멈춘다 |
+| eager | 그룹 전체 | 단순하지만 멤버 하나의 변화에도 모든 멤버의 조회가 멈춘다 |
 | cooperative | 옮겨지는 파티션만 | 리밸런싱이 두 단계로 나뉘고 나머지 파티션은 계속 처리된다 |
 | 새 프로토콜 (KIP-848) | 옮겨지는 파티션만 | Coordinator가 할당을 계산하고 heartbeat로 점진 적용한다. 할당 방식과 세션 타임아웃도 서버 설정이 정한다 |
 
@@ -94,10 +94,10 @@ poll()로 파티션 leader에서 메시지를 가져오고, 처리한 오프셋�
 컨슈머 장애는 리밸런싱으로, Coordinator 장애는 오프셋 토픽 파티션의 leader 이동으로 복구
 
 1. 멤버가 제거되면 Coordinator가 리밸런싱을 시작하고, 그 멤버의 파티션은 남은 멤버에게 재할당된다.
-2. 새 담당자는 그 파티션의 마지막 커밋 오프셋부터 조회를 시작한다. 이전 담당자가 커밋하지 못한 구간은 다시 처리된다.
-3. Coordinator Broker가 죽으면 \_\_consumer\_offsets 파티션의 leader가 다른 Broker로 옮겨지고(2편의 failover), 그 Broker가 새 Coordinator가 된다.
+2. 새로 할당받은 컨슈머는 그 파티션의 마지막 커밋 오프셋부터 조회를 시작한다. 이전 컨슈머가 커밋하지 못한 구간은 다시 처리된다.
+3. Coordinator Broker에 장애가 나면 \_\_consumer\_offsets 파티션의 leader가 다른 Broker로 옮겨지고(2편의 failover), 그 Broker가 새 Coordinator가 된다.
 4. 컨슈머는 Coordinator 오류를 받으면 FindCoordinator를 다시 보내 새 Coordinator를 찾고 heartbeat와 커밋을 재개한다. 오프셋 토픽이 RF 3으로 복제되어 있으므로 커밋 기록은 유지된다.
-5. 그룹 전체가 죽었다 돌아오면 커밋 오프셋이 남아 있는 한 그 지점부터 이어간다. offsets.retention.minutes를 넘겨 오프셋이 지워졌으면 auto.offset.reset을 따른다.
+5. 그룹 전체가 중단됐다 재시작되면 커밋 오프셋이 남아 있는 한 그 지점부터 이어간다. offsets.retention.minutes를 넘겨 오프셋이 지워졌으면 auto.offset.reset을 따른다.
 
 **컨슈머 failover의 단위는 파티션 재할당이고, 커밋 오프셋이 이어받는 지점을 정한다.**
 

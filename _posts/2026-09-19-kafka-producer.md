@@ -41,7 +41,7 @@ tags: [TransCourse, Kafka, producer, acks, idempotence, partitioner]
 - 파티션 수를 늘리면 해시 결과가 바뀌어 기존 키가 다른 파티션으로 간다. 키 순서가 중요한 토픽은 파티션 수를 처음부터 넉넉히 잡는다.
 - 특정 키에 메시지가 몰리면 그 파티션만 커진다. 키 설계가 파티션 간 부하 균형을 정한다.
 
-**키는 순서를 주고, 키가 없으면 효율을 얻는다.**
+**키가 있으면 키 단위 순서가 보장되고, 없으면 배치 효율이 높아진다.**
 
 <br>
 
@@ -71,7 +71,7 @@ leader가 응답을 돌려주는 시점을 정하는 설정
 - 멱등 프로듀서는 기동 시 Broker에서 PID(Producer ID)를 받고, 파티션마다 시퀀스 번호를 붙여 보낸다. Broker는 파티션별로 마지막 시퀀스를 기억해 중복 배치를 버린다.
 - 재시도 중 배치 순서가 뒤바뀌는 문제도 시퀀스 번호로 막는다. 그래서 max.in.flight.requests.per.connection을 5 이하로 두면서도 순서가 유지된다.
 - 멱등성은 한 프로듀서 세션, 한 파티션 안에서만 성립한다. 프로듀서를 재시작하면 PID가 바뀌어 이전 세션의 중복은 걸러지지 않는다.
-- enable.idempotence의 default는 true이고(Kafka 3.0부터), 그에 맞춰 acks=all, retries는 최대값이 default다. acks가 all이 아니거나 retries=0이거나 max.in.flight.requests.per.connection이 5를 넘으면, enable.idempotence를 명시하지 않은 경우 멱등성이 조용히 꺼진다. true로 명시한 경우에만 설정 오류가 난다.
+- enable.idempotence의 default는 true이고(Kafka 3.0부터), 그에 맞춰 acks=all, retries는 최대값이 default다. acks가 all이 아니거나 retries=0이거나 max.in.flight.requests.per.connection이 5를 넘으면, enable.idempotence를 명시하지 않은 경우 멱등성이 경고 없이 비활성화된다. true로 명시한 경우에만 설정 오류가 난다.
 
 **멱등성은 재시도 중복을 없애지만, 세션과 파티션 경계를 넘는 중복은 트랜잭션의 몫이다.**
 
@@ -99,7 +99,7 @@ leader 변경, Broker 장애, 저장 거부 각각에 대한 프로듀서의 동
 - 배치 적재 공간(buffer.memory, default 32MB)이 차면 send()가 max.block.ms(default 1분) 동안 블로킹된다. 이때는 애플리케이션 스레드가 멈추므로 전송 속도보다 생산 속도가 빠른 상황을 뜻한다.
 - 재시도 가능하지 않은 오류(직렬화 실패, 메시지 크기 초과, 인가 실패)는 즉시 오류로 완료된다.
 
-**재시도 가능한 오류는 delivery.timeout.ms 안에서 프로듀서가 알아서 처리한다.**
+**재시도 가능한 오류는 delivery.timeout.ms 안에서 프로듀서가 자동으로 재시도한다.**
 
 <br>
 

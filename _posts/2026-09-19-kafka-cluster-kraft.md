@@ -11,7 +11,7 @@ tags: [TransCourse, Kafka, KRaft, controller, broker, replication]
 
 - 토픽은 메시지의 논리적 이름이고, 실제 저장 단위는 토픽을 나눈 파티션이다. 파티션은 끝에만 추가되는 로그(append-only log)이며, 메시지는 파티션 안에서 0부터 증가하는 오프셋으로 식별된다.
 - 메시지는 컨슈머가 읽어 가도 지워지지 않고, 보존 기간(retention)이 지나야 삭제된다. 꺼내면 사라지는 큐와 다른 점이다.
-- 컨슈머는 Broker가 밀어 주는 것이 아니라 스스로 가져가고(fetch), 어디까지 읽었는지를 오프셋으로 컨슈머 그룹 단위로 기억한다. 그래서 같은 토픽을 여러 그룹이 각자의 진도로 독립적으로 읽는다.
+- 컨슈머는 Broker가 밀어 주는 것이 아니라 스스로 가져가고(fetch), 어디까지 읽었는지를 오프셋으로 컨슈머 그룹 단위로 기억한다. 그래서 같은 토픽을 여러 그룹이 각자의 오프셋으로 독립적으로 읽는다.
 - 컨슈머 그룹 안에서 한 파티션은 인스턴스 하나에만 할당된다. 파티션 수가 그룹의 최대 병렬 처리 수이므로, 파티션 수는 그룹의 인스턴스 수 이상으로 둔다.
 - 토픽과 컨슈머 그룹은 N : M이다. 한 토픽을 여러 그룹이 구독하고, 한 그룹이 여러 토픽을 구독할 수 있다.
 - 파티션은 RF(Replication Factor)만큼 복제되어 서로 다른 Broker에 놓인다. 그중 하나가 leader, 나머지가 follower다.
@@ -59,7 +59,7 @@ ZooKeeper 없이 Kafka 자체의 Raft 합의로 메타데이터를 관리하는 
 4. Broker가 메타데이터 로그를 따라잡으면 Controller가 fenced를 해제하고, 그때부터 파티션 leader 역할과 클라이언트 요청을 맡는다.
 5. 클라이언트는 bootstrap.servers에 적힌 Broker 아무 곳에나 접속해 메타데이터를 받고, 그 뒤로는 각 파티션의 leader Broker에 직접 연결한다.
 
-**Controller 과반이 먼저 서고, Broker는 메타데이터를 따라잡은 뒤에야 요청을 받는다.**
+**Controller 쿼럼이 먼저 구성되고, Broker는 메타데이터를 따라잡은 뒤에야 요청을 받는다.**
 
 <br>
 
@@ -83,7 +83,7 @@ Active Controller가 수행하는 클러스터 관리 작업
 | 역할 | 내용 |
 |---|---|
 | Broker 멤버십 | Broker 등록을 받고 heartbeat로 생존을 추적한다 |
-| 파티션 leader 선출 | Broker가 죽거나 추가될 때 영향받는 파티션의 새 leader를 ISR 중에서 정한다 |
+| 파티션 leader 선출 | Broker에 장애가 나거나 Broker가 추가될 때 영향받는 파티션의 새 leader를 ISR 중에서 정한다 |
 | 토픽·파티션 관리 | 토픽 생성과 삭제, 파티션 추가, replica 배치를 처리한다 |
 | ISR 관리 | 각 파티션의 ISR 변경을 메타데이터에 반영한다 |
 | 설정·ACL·Quota | 동적 설정, 접근 제어 목록, 대역폭과 요청량 제한을 관리한다 |
@@ -91,7 +91,7 @@ Active Controller가 수행하는 클러스터 관리 작업
 
 - 이 작업들은 모두 메타데이터 로그의 레코드로 기록되고, 커밋된 뒤에야 Broker에 반영된다. 그래서 Active Controller가 바뀌어도 결정의 이력이 남는다.
 
-**Controller는 메시지를 만지지 않고, 누가 어느 파티션의 leader인지 같은 사실만 결정하고 전파한다.**
+**Controller는 메시지를 처리하지 않고, 누가 어느 파티션의 leader인지 같은 사실만 결정하고 전파한다.**
 
 <br>
 
@@ -101,7 +101,7 @@ Broker 장애는 heartbeat 끊김으로, Controller 장애는 Raft 선거 타임
 
 - Broker는 broker.heartbeat.interval.ms(default 2초)마다 Active Controller에 heartbeat를 보낸다. broker.session.timeout.ms(default 9초) 동안 heartbeat가 없으면 Controller는 그 Broker를 fenced로 판정한다.
 - fenced Broker는 파티션 leader 자격을 잃는다. 그 Broker가 leader였던 파티션마다 새 leader 선출이 시작되고, ISR에서도 제외된다.
-- Active Controller가 죽으면 나머지 Controller는 controller.quorum.election.timeout.ms(default 1초) 동안 리더의 메시지를 받지 못한 뒤 새 선거를 시작한다.
+- Active Controller에 장애가 나면 나머지 Controller는 controller.quorum.election.timeout.ms(default 1초) 동안 리더의 메시지를 받지 못한 뒤 새 선거를 시작한다.
 - 판정은 모두 Controller 쪽에서 이루어진다. Broker끼리 서로의 생사를 판정하지 않는다.
 
 **Broker 장애는 Controller가 heartbeat로, Controller 장애는 쿼럼이 선거로 판정한다.**
@@ -115,8 +115,8 @@ Broker 장애는 heartbeat 끊김으로, Controller 장애는 Raft 선거 타임
 1. Broker가 fenced가 되면 Controller는 그 Broker가 leader였던 파티션마다 ISR에 남은 replica 중 하나를 새 leader로 정한다.
 2. 새 leader 정보가 메타데이터 로그에 커밋되어 모든 Broker에 전파된다. 클라이언트는 다음 요청의 오류 응답이나 메타데이터 갱신으로 새 leader를 알게 되어 재연결한다.
 3. ISR에 남은 replica가 없으면, Kafka 4.1부터 새 클러스터에 기본으로 켜지는 ELR(Eligible Leader Replicas) 중에서 leader를 고른다. ELR도 없으면 그 파티션은 leader 없이 멈춘다. 이때 ISR 밖의 replica를 leader로 올리는 선택지(unclean leader election)와 그 대가는 다음 편에서 다룬다.
-4. Active Controller가 죽으면 쿼럼의 나머지 Controller가 Raft 선거로 새 리더를 뽑는다. 메타데이터 로그가 이미 복제되어 있으므로 새 리더는 바로 관리 작업을 이어간다.
-5. 죽었던 Broker가 돌아오면 다시 등록하고 메타데이터를 따라잡은 뒤 follower로 복귀한다. auto.leader.rebalance.enable(default true)이 켜져 있으면 Controller가 주기적으로 원래 leader(preferred leader)에게 leader 자리를 되돌린다.
+4. Active Controller에 장애가 나면 쿼럼의 나머지 Controller가 Raft 선거로 새 리더를 뽑는다. 메타데이터 로그가 이미 복제되어 있으므로 새 리더는 바로 관리 작업을 이어간다.
+5. 장애가 났던 Broker가 복구되면 다시 등록하고 메타데이터를 따라잡은 뒤 follower로 복귀한다. auto.leader.rebalance.enable(default true)이 켜져 있으면 Controller가 주기적으로 원래 leader(preferred leader)에게 leader 자리를 되돌린다.
 
 **파티션 leader는 Controller가 ISR 안에서 고르고, Active Controller는 쿼럼이 선거로 교체한다.**
 
